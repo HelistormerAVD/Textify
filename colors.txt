@@ -1,0 +1,25 @@
+Farben der CMD Console:
+
+
+Normal  RGB                 Hex:
+
+Black   (12, 12, 12)        0C0C0C
+Red     (197, 15, 31)       C50F1F
+Green   (19, 161, 14)       13A10E
+Yellow  (193, 156, 0)       C19C00
+Blue    (0, 55, 218)        0037DA
+Magenta (136, 23, 152)      881798
+Cyan    (58, 150, 221)      3A96DD
+white   (204, 204, 204)     CCCCCC
+
+
+Strong  RGB                 Hex:
+
+Black   (118, 118, 118)     767676
+Red     (231, 72, 86)       E74856
+Green   (22, 198, 12)       16C60C
+Yellow  (249, 241, 165)     F9F1A5
+Blue    (58, 120, 255)      3B78FF
+Magenta (180, 0, 158)       B4009E
+Cyan    (97, 214, 214)      61D6D6
+white   (242, 242, 242)     F2F2F2

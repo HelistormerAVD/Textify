@@ -10,7 +10,6 @@ from tkinter.filedialog import askopenfilename
 
 from functions import ImageText
 
-ESC = ""
 def load_image_as_array(image_path):
     # Bild öffnen
     img = Image.open(image_path)
@@ -39,8 +38,15 @@ if __name__ == "__main__":
         test = ImageText(pixel_data.shape[0], pixel_data.shape[1])
         #test.showText()
         #print("\n")
-        test.setData(pixel_data)
-        test.setText(pixel_data)
-        test.modify_Text_by_pixelFunction("pixel_average_brightness_mapping")
+        test.setData(pixel_data.copy())  # Ensure a separate copy
+        test.setText(pixel_data.copy())  # Ensure a separate copy
+        test.setColorMap(pixel_data.copy())  # Ensure a separate copy
+        test.modify_Text_by_pixelFunction("pixel_average_brightness_mapping", test.getData())
+        test.setTempData(test.text)
         test.showText()
+        test.modify_ColorMap_by_pixelFunction("pixelD_match_cmd_color_foreground")
+        #test.showData()
+        test.modify_Text_by_pixelFunction("bake_color_codes", test.colorMap,test.text)
+        test.showText()
+        #test.showData()
         sleep(3)
