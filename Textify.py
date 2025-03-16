@@ -1,5 +1,12 @@
+from math import trunc
+from operator import truediv
+from time import sleep
+from tkinter import Tk
+
 from PIL import Image
 import numpy as np
+from tkinter.filedialog import askopenfilename
+
 
 from functions import ImageText
 
@@ -18,14 +25,22 @@ def load_image_as_array(image_path):
 
 
 if __name__ == "__main__":
-    image_path = "testimages/block/acacia_door_bottom.png"  # Pfad zur Bilddatei
-    pixel_data = load_image_as_array(image_path)
 
-    print("Bildgröße:", pixel_data.shape)  # Ausgabe der Form des Arrays
-    #print("Pixelwerte:", pixel_data)  # Anzeige der RGB-Werte
-    #print("\n\n\n\n")
-    test = ImageText(8, 8)
-    test.showData()
-    print("\n")
-    test.setText(pixel_data)
-    test.showText()
+    Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
+    while 1:
+        image_path = askopenfilename(initialdir="C:\\Users\\kenne\\OneDrive\\Desktop\\Freizeit\\Programme\\python_wii_freez\\SpieleKumpelSWE\\Textify\\testimages\\painting")  # show an "Open" dialog box and return the path to the selected file
+
+        #image_path = "testimages/block/amethyst_cluster.png"  # Pfad zur Bilddatei
+        pixel_data = load_image_as_array(image_path)
+
+        print("Bildgröße:", pixel_data.shape)  # Ausgabe der Form des Arrays
+        #print("Pixelwerte:", pixel_data)  # Anzeige der RGB-Werte
+        #print("\n\n\n\n")
+        test = ImageText(pixel_data.shape[0], pixel_data.shape[1])
+        #test.showText()
+        #print("\n")
+        test.setData(pixel_data)
+        test.setText(pixel_data)
+        test.modify_Text_by_pixelFunction("pixel_average_brightness_mapping")
+        test.showText()
+        sleep(3)
