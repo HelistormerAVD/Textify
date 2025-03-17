@@ -157,8 +157,20 @@ class ImageText:
         elif type == 3:
             return inputChar[0].__str__()
 
+    def color_distance(self, c1, c2) -> float:
+        """Berechnet die euklidische Distanz zwischen zwei RGB-Farben."""
+        return ((c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[2] - c2[2]) ** 2) ** 1.0
+
+    def closest_cmd_color_index(self, pixel, colors) -> int:
+        """Findet den Index der nächstgelegenen Farbe aus cmd_colors für den gegebenen Pixel."""
+        return min(range(len(colors)), key=lambda i: self.color_distance(pixel, colors[i]))
+
     def pixelD_match_cmd_color_foreground(self, pixel):
-        paare = []
+        closest_index = self.closest_cmd_color_index(pixel, self.cmd_colors)
+        return closest_index
+
+    """
+    paare = []
         bestGuess = (0, 0, 0)
         bestGuessNum = 0
         avgNum = 765
@@ -174,6 +186,7 @@ class ImageText:
                 bestGuessNum = i
         #print(bestGuessNum)
         return bestGuessNum
+    """
 
 
 
