@@ -27,8 +27,9 @@ if __name__ == "__main__":
 
     Tk().withdraw()  # we don't want a full GUI, so keep the root window from appearing
     while 1:
-        image_path = askopenfilename(initialdir="C:\\Users\\Kenneth\\PycharmProjects\\Textify\\testimages\\painting")  # show an "Open" dialog box and return the path to the selected file
+        image_path = askopenfilename(initialdir="F:\\Sonstige\\Blender Projects\\Console_Adventure\\renders")  # show an "Open" dialog box and return the path to the selected file
         #pc = "C:\\Users\\Kenneth\\PycharmProjects\\Textify\\testimages\\painting"
+        #pc = "F:\\Sonstige\\Blender Projects\\Console_Adventure\\renders"
         #laptop = C:\\Users\\kenne\\OneDrive\\Desktop\\Freizeit\\Programme\\python_wii_freez\\SpieleKumpelSWE\\Textify\\testimages\\painting
         #image_path = "testimages/block/amethyst_cluster.png"  # Pfad zur Bilddatei
         pixel_data = load_image_as_array(image_path)

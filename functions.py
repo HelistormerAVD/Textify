@@ -7,7 +7,7 @@ import numpy as np
 class ImageText:
     ESC = "["
 
-    def __init__(self, width, height):#
+    def __init__(self, width, height):
         self.colorMap = None
         self.width = width
         self.height = height

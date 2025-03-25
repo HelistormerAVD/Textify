@@ -1,0 +1,40 @@
+import bpy
+import math
+import os
+
+# Pfad zum Speichern der gerenderten Bilder
+output_path = bpy.path.abspath("//renders/")
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+
+# Kamera-Objekt abrufen
+camera = bpy.data.objects.get("Camera")
+light = bpy.data.objects.get("Kamera_light")
+if camera is None:
+    raise ValueError("Keine Kamera mit dem Namen 'Camera' gefunden. Stelle sicher, dass eine Kamera existiert.")
+if light is None:
+    raise ValueError("Kein Licht mit dem Namen 'Kamera_licht' gefunden. Stelle sicher, dass ein Kamera_licht existiert.")
+
+# Anzahl der Schritte (8 * 45° = 360°)
+steps = 8
+angle_step = math.radians(45)  # 45 Grad in Radian umwandeln
+
+# Ursprüngliche Rotation speichern
+initial_rotation = camera.rotation_euler.z
+initial_cam_rotation = light.rotation_euler.z
+
+for i in range(steps):
+    # Kamera drehen
+    camera.rotation_euler.z = initial_rotation + (i * angle_step)
+    light.rotation_euler.z = initial_cam_rotation + (i * angle_step)
+    
+    # Rendern
+    bpy.context.scene.render.filepath = os.path.join(output_path, f"render_{i:03d}.png")
+    bpy.ops.render.render(write_still=True)
+    
+    print(f"Bild {i+1}/{steps} gespeichert: {bpy.context.scene.render.filepath}")
+
+# Kamera zurücksetzen
+camera.rotation_euler.z = initial_rotation
+light.rotation_euler.z = initial_cam_rotation
+print("Fertig! Kamera zurückgesetzt.")
